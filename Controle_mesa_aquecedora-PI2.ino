@@ -33,7 +33,7 @@ void setup(void) {
   Serial.println(" Digite a temperatura de setpoint: ");
 
   setpoint = Serial.parseFloat();
-  trset = (setpoint - 4);
+  trset = (setpoint - 4.00);
   
   if (Serial.available() != 0)
   {
