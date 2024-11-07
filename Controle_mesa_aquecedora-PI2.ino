@@ -30,8 +30,8 @@ int flag3 = 0;
 int flagprint = 0;
 float temp_plot = 0.00;
 unsigned long tempoInicial;
-int l = 0; // Contador de elementos preenchidos
-int m = 0; // Índice circular para inserir no vetor
+int l = 0; 
+int m = 0; 
 float fator_tr = 0.00;
 
 int j;
@@ -51,8 +51,6 @@ void setup(void)
   sensors.begin();
   sensors.setResolution(12);
   n = sensors.getDeviceCount();
-  //Serial.print("DS18B20 identificados: ");
-  //Serial.println(n);
 }
 
 
@@ -63,21 +61,12 @@ unsigned long tempoAtual = millis();
 unsigned long tempoDecorrido = tempoAtual - tempoInicial;
 unsigned long minutosDecorridos = tempoDecorrido / 1000;
 
-  ////////////////////=-=-==-0-909-00973598273895y13y587'2////////////////////////-=-=-==-0-909-00973598273895y13y587'2
   
   //flag3 = 1; //Abilitar caso queira avaliar apenas o regime permanente
   
   //Solicita a entrada para o setpoint
   if(flag1 == 0)
   {
-    //Serial.println("Digite o valor de setpoint e tecle ENTER:");
-    /*
-    // Aguarda até que um dado completo seja inserido
-    while (Serial.available() == 0) 
-    {
-    
-    }
-    */
     // Lê a entrada como string
     String input = Serial.readString();
     setpoint = input.toFloat();  // Converte para float
@@ -86,7 +75,6 @@ unsigned long minutosDecorridos = tempoDecorrido / 1000;
     {
       flag1 ++;
     }
-    
   }
 
     if (Serial.available() != 1 && flag1 == 1)
@@ -110,7 +98,6 @@ unsigned long minutosDecorridos = tempoDecorrido / 1000;
           {
             fator_tr = (((setpoint*5.00)/40.00) + 1.00);
           }
-          
           
           trset = (setpoint - fator_tr);
 
@@ -152,15 +139,12 @@ unsigned long minutosDecorridos = tempoDecorrido / 1000;
           Serial.print(", ");
           Serial.println(t_amb);
         
-          
-          
 
           //RELE [ON] TRANSIENT
           if (temp_plot < trset)
           {
             digitalWrite(rele, HIGH);
             flag2 = 1;
-          
           }
 
           //RELE [OFF] TRANSIENT
@@ -187,13 +171,7 @@ unsigned long minutosDecorridos = tempoDecorrido / 1000;
           {
             digitalWrite(rele, LOW);
           }
-
-          /*
-          if((temp_plot <= setpoint - 0.4) && (flag3 > 0))
-          {
-            digitalWrite(rele, HIGH);
-          }
-          */
+          
           delay(3000);
     }
 }
@@ -258,4 +236,3 @@ float media_movel_b(float sensor_1ab)
 
   return mmovel_b;
 }
-
